@@ -5,53 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fbef79a-77c1-40ff-a828-827f365b0b72" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/annotations/Component.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/annotations/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/annotations/DateTimeFormat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/annotations/DeleteMapping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/annotations/GetMapping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/annotations/PatchMapping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/annotations/PathVariable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/annotations/PostMapping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/annotations/PutMapping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/annotations/RequestMapping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/annotations/RequestParam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/annotations/RestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/annotations/Service.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/containers/BeanContainer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/router/DispatcherServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/router/HandlerAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/router/HandlerAdapterImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/router/HandlerMapping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/router/HandlerMappingImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/router/RouterService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/member/controllers/MemberController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/member/controllers/RequestJoin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/member/services/JoinService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/choongang/member/validators/JoinValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/messages/commons.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/messages/errors.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/messages/validations.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/layouts/common.tag" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/layouts/main.tag" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/member/join.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/js/common.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/js/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/choongang/global/config/containers/BeanContainerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/containers/BeanContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/containers/BeanContainer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,9 +30,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2iBkQz4bi5eCVYHiP0CPQA9b6Lr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -90,6 +46,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/최시원/ProjectHome/HomePractice1",
     "onboarding.tips.debug.path": "D:/최시원/ProjectHome/HomePractice1/src/main/java/org/choongang/Main.java",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
