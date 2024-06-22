@@ -5,7 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target({ElementType.PARAMETER, ElementType.TYPE_PARAMETER})
+@Target({ElementType.PARAMETER, ElementType.TYPE_PARAMETER}) // 매개변수, 타입 매개변수(지네릭 사용시)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PathVariable {
     String value();

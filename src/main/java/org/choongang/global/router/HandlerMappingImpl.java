@@ -49,7 +49,6 @@ public class HandlerMappingImpl implements HandlerMapping{
         return null;
     }
 
-
     /**
      *
      * @param request
@@ -58,6 +57,7 @@ public class HandlerMappingImpl implements HandlerMapping{
      * @param prefixUrl : 컨트롤러 체크인 경우 타입 애노테이션에서 적용된 경우
      * @return
      */
+
     private boolean isMatch(HttpServletRequest request, Annotation[] annotations, boolean isMethod, String prefixUrl) {
 
         String uri = request.getRequestURI();

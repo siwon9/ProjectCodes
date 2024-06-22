@@ -50,7 +50,7 @@ public class BeanContainer {
                 String key = clazz.getName();
 
                 // 이미 생성된 객체라면 생성된 객체로 활용
-                if (beans.containsKey(key)) continue;;
+                if (beans.containsKey(key)) continue;
 
                 Annotation[] annotations = clazz.getDeclaredAnnotations();
                     //  clazz에 선언된 모든 애너테이션 객체를 배열로 반환한다.
