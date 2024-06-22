@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fbef79a-77c1-40ff-a828-827f365b0b72" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="0fbef79a-77c1-40ff-a828-827f365b0b72" name="Changes" comment="BeanContainer&#10;getFiles, getClassNames 정리">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/containers/BeanContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/choongang/global/config/containers/BeanContainer.java" afterDir="false" />
     </list>
@@ -62,6 +61,15 @@
       <option name="presentableId" value="Default" />
       <updated>1718971345505</updated>
     </task>
+    <task id="LOCAL-00001" summary="BeanContainer&#10;getFiles, getClassNames 정리">
+      <option name="closed" value="true" />
+      <created>1719033546209</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1719033546209</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -74,5 +82,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="BeanContainer&#10;getFiles, getClassNames 정리" />
+    <option name="LAST_COMMIT_MESSAGE" value="BeanContainer&#10;getFiles, getClassNames 정리" />
   </component>
 </project>

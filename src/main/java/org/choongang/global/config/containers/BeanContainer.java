@@ -39,7 +39,6 @@ public class BeanContainer {
 
             List<Class> classNames = getClassNames(rootPath, packageName);
 
-
             for (Class clazz : classNames) {
                 // 인터페이스는 동적 객체 생성을 하지 않으므로 건너띄기
                 if (clazz.isInterface()) {
@@ -53,9 +52,8 @@ public class BeanContainer {
                 // 이미 생성된 객체라면 생성된 객체로 활용
                 if (beans.containsKey(key)) continue;;
 
-
                 Annotation[] annotations = clazz.getDeclaredAnnotations();
-
+                    //  clazz에 선언된 모든 애너테이션 객체를 배열로 반환한다.
                 boolean isBean = false;
                 for (Annotation anno : annotations) {
                     if (anno instanceof Controller || anno instanceof RestController || anno instanceof Service || anno instanceof Component)  {
@@ -72,10 +70,7 @@ public class BeanContainer {
                         beans.put(key, obj);
                     }
                 }
-
             }
-
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,11 +93,14 @@ public class BeanContainer {
      */
     public <T> T getBean(Class clazz) {
         return (T)beans.get(clazz.getName());
+        // beans맵에서 해당하는 클래스이름을 키로 가지는 개체를 가져온다.
+        //참고로 getName은 문자열로 가져오는 메서드인듯
     }
 
     public void addBean(Object obj) {
-
         beans.put(obj.getClass().getName(), obj);
+        //obj 객체의 클래스 이름을 가져와서 키값으로 설정, obj를 값으로 설정
+
     }
 
     public void addBean(String key, Object obj) {
@@ -119,32 +117,38 @@ public class BeanContainer {
      *
      * @param con
      */
+
+    // 뭐하는 메서드?-->
     private List<Object> resolveDependencies(String key, Constructor con) throws Exception {
-        List<Object> dependencies = new ArrayList<>();
-        if (beans.containsKey(key)) {
-            dependencies.add(beans.get(key));
+        List<Object> dependencies = new ArrayList<>(); // 키값을 넣어준다.
+        if (beans.containsKey(key)) { // beans 라는 Map에 key가 포함되어있는지 체크 후 key 값과 같은게 있다면
+            dependencies.add(beans.get(key)); //dependencies List에 추가
             return dependencies;
         }
+        Class[] parameters = con.getParameterTypes(); // 생성자의 매개변수 타입을 나타내는 클래스 객체 배열 반환.
+        if (parameters.length == 0) { // parameters 배열에 요소가 없을시, 즉 매개변수 있는 생성자가 없을시
+            Object obj = con.newInstance(); // con의 디폴트 생성자로 obj 생성
+            dependencies.add(obj); // dependencies 디폴트 생성자로 만든 ogj 객체를 list에 추가
 
-        Class[] parameters = con.getParameterTypes();
-        if (parameters.length == 0) {
-            Object obj = con.newInstance();
-            dependencies.add(obj);
-        } else {
+        } else { // Map에 key값이 포함되어있는게 없을 시
             for(Class clazz : parameters) {
-
-                Object obj = beans.get(clazz.getName());
-                if (obj == null) {
-                    Constructor _con = clazz.getDeclaredConstructors()[0];
-
-                    if (_con.getParameterTypes().length == 0) {
-                        obj = _con.newInstance();
-                    } else {
+                Object obj = beans.get(clazz.getName()); //
+                // beans Map에서 key값이 clazz.getName()인 객체를 가져온다
+                // clazz.getName은 parameters 배열에 각 요소의 매개변수 타입
+                // **************************************************************************************
+                if (obj == null) { // 가져와 지는게 없을 때. / beans Map에 일치하는 요소가 없을 때.
+                    Constructor _con = clazz.getDeclaredConstructors()[0];     // clazz의 첫번째 생성자를 _con에 대입.
+                    if (_con.getParameterTypes().length == 0) {  //매개타입을 가져왔는데 없을 시에
+                        obj = _con.newInstance();   // 새로운 객체생성후 obj로 대입
+                    } else { // 가져와 지는게 있을 시
                         List<Object> deps = resolveDependencies(clazz.getName(), _con);
+                                //  아까 Parameters의 요소하나하나의 getName()의 키 값, _con이라는 생성자 매개변수
+                                //
                         obj = _con.newInstance(deps.toArray());
+                        // clazz.getName()을 문자열로 변환해서 새로운 객체 생성 및 obj에 대입
                     }
                 }
-                dependencies.add(obj);
+                dependencies.add(obj); // 마지막으로 dependencies list에 요소를 추가한다.
             }
         }
         return dependencies;
