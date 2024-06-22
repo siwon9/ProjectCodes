@@ -26,7 +26,7 @@ public class HandlerAdapterImpl implements HandlerAdapter {
     private final ObjectMapper om;
 
     public HandlerAdapterImpl() {
-        om = new ObjectMapper();
+        om = new ObjectMapper(); // 이게 뭔지 잘 모르겠음
         om.registerModule(new JavaTimeModule());
     }
 
@@ -194,6 +194,10 @@ public class HandlerAdapterImpl implements HandlerAdapter {
      * @param clz
      * @param fieldNm - 멤버변수명
      */
+
+
+
+
     private void invokeMethod(Object paramObj, Method method, String value, Class clz, String fieldNm) {
         try {
             if (clz == String.class) { // 문자열 처리
@@ -261,14 +265,14 @@ public class HandlerAdapterImpl implements HandlerAdapter {
      * @param anno
      * @return
      */
+
     private String[] getMappingUrl(String method, Annotation anno) {
 
         // RequestMapping은 모든 요청에 해당하므로 정의되어 있다면 이 설정으로 교체하고 반환한다.
         if (anno instanceof  RequestMapping) {
             RequestMapping mapping = (RequestMapping) anno;
-            return mapping.value();
-        }
-
+            return mapping.value(); // 문자열 배열반환.
+        } // method가져와서 문자열로 반환했는데 그게 "---" 이면 아래와 같이한다.
         if (method.equals("GET") && anno instanceof GetMapping) {
             GetMapping mapping = (GetMapping) anno;
             return mapping.value();

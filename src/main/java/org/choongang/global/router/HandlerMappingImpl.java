@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
 @Service
 public class HandlerMappingImpl implements HandlerMapping{
 
-
     private String controllerUrl;
 
     @Override
@@ -120,11 +119,17 @@ public class HandlerMappingImpl implements HandlerMapping{
      *
      * @return
      */
+
+
     private List<Object> getControllers() {
-        return BeanContainer.getInstance().getBeans().entrySet()
+        return BeanContainer.getInstance().getBeans().entrySet() // BeanContainer의 instance를 가져온후에  맵형태의 beans가져와서 entrySet으로 변환
                 .stream()
-                .map(s -> s.getValue())
-                .filter(b -> Arrays.stream(b.getClass().getDeclaredAnnotations()).anyMatch(a -> a instanceof Controller || a instanceof RestController))
-                .toList();
+                .map(s -> s.getValue())// entrySet의 각 요소마다의 값을 반환한다.
+                .filter(b -> Arrays.stream(b.getClass().getDeclaredAnnotations())
+                            .anyMatch(a -> a instanceof Controller || a instanceof RestController))
+                //애너테이션 배열을 스트림으로 반환한다.
+                // 각요소의 클래스를 가져온뒤, 해당요소에서 직접적으로 선언된 애너테이션들을 가져오고,
+                //Controller 또는 RestController 중 하나라도 있는지 확인한다. 있는것들만 걸러서
+                .toList(); // List로 만든다.
     }
 }
