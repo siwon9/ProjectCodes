@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
+//요청주소와 요청방식 정보를 가지고 컨트롤러 객체와 요청 메서드를 찾아주는 역할
 public class HandlerMappingImpl implements HandlerMapping{
 
     private String controllerUrl;
@@ -92,8 +93,8 @@ public class HandlerMappingImpl implements HandlerMapping{
                     String addUrl = prefixUrl == null ? "" : prefixUrl;
                     // 메서드인 경우 *와 {경로변수} 고려하여 처리
                     for(String mapping : mappings) {
-                        String pattern = mapping.replace("/*", "/\\w*")
-                                .replaceAll("/\\{\\w+\\}", "/(\\\\w*)");
+                        String pattern = mapping.replace("/*", "/\\w*") // replace는 고정된 문자열 변경
+                                .replaceAll("/\\{\\w+\\}", "/(\\\\w*)"); // 정규표현식에 해당하는 모든 문자열 변경
 
                         Pattern p = Pattern.compile("^" + request.getContextPath() + addUrl + pattern + "$");
                         Matcher matcher = p.matcher(uri);
@@ -120,7 +121,7 @@ public class HandlerMappingImpl implements HandlerMapping{
      * @return
      */
 
-
+        //BeanContainer에 등록된 모든 빈 객체들 중에서 @Controller 또는 @RestController 애노테이션이 선언된 객체들만을 필터링하여 리스트로 반환하는 기능
     private List<Object> getControllers() {
         return BeanContainer.getInstance().getBeans().entrySet() // BeanContainer의 instance를 가져온후에  맵형태의 beans가져와서 entrySet으로 변환
                 .stream()

@@ -6,6 +6,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.choongang.global.config.annotations.*;
+import org.choongang.global.config.containers.BeanContainer;
 
 import java.io.PrintWriter;
 import java.lang.annotation.Annotation;
@@ -21,13 +22,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
+//찾은 컨트롤러 객체의 메서드를 실행한다.
 public class HandlerAdapterImpl implements HandlerAdapter {
 
     private final ObjectMapper om;
+    private final HandlerControllerAdvice handlerControllerAdvice;
 
     public HandlerAdapterImpl() {
         om = new ObjectMapper(); // 이게 뭔지 잘 모르겠음
         om.registerModule(new JavaTimeModule());
+        handlerControllerAdvice = BeanContainer.getInstance().getBean(HandlerControllerAdvice.class);
     }
 
     @Override
@@ -38,6 +42,7 @@ public class HandlerAdapterImpl implements HandlerAdapter {
 
         String m = request.getMethod().toUpperCase(); // 요청 메서드
         Annotation[] annotations = method.getDeclaredAnnotations();
+        // 메소드를 호출하여 해당 메소드에 선언된 모든 어노테이션을 배열로 가져옴
 
         /* 컨트롤러 애노테이션 처리 S */
         String[] rootUrls = {""};
@@ -102,7 +107,8 @@ public class HandlerAdapterImpl implements HandlerAdapter {
                     }
                 }
 
-                if (cls == int.class || cls == Integer.class || cls == long.class || cls == Long.class || cls == double.class || cls == Double.class ||  cls == float.class || cls == Float.class) {
+                if (cls == int.class || cls == Integer.class || cls == long.class || cls == Long.class
+                        || cls == double.class || cls == Double.class ||  cls == float.class || cls == Float.class) {
                     paramValue = paramValue == null || paramValue.isBlank()?"0":paramValue;
                 }
 
@@ -111,9 +117,9 @@ public class HandlerAdapterImpl implements HandlerAdapter {
                 } else if (cls == HttpServletResponse.class) {
                     args.add(response);
                 } else if (cls == int.class) {
-                    args.add(Integer.parseInt(paramValue));
+                    args.add(Integer.parseInt(paramValue)); // 문자열을 기본타입 int로 변환한다.
                 } else if (cls == Integer.class) {
-                    args.add(Integer.valueOf(paramValue));
+                    args.add(Integer.valueOf(paramValue)); // Integer 객체로 변환한다.
                 } else if (cls == long.class) {
                     args.add(Long.parseLong(paramValue));
                 } else if (cls == Long.class) {
@@ -158,7 +164,9 @@ public class HandlerAdapterImpl implements HandlerAdapter {
 
         /* 요청 메서드 호출 S */
         try {
-            Object result = args.isEmpty() ? method.invoke(controller) : method.invoke(controller, args.toArray());
+            // controller 적용 범위  Advice 처리
+            handlerControllerAdvice.handle(controller);
+            Object result = method.invoke(controller, args.toArray());
 
             /**
              *  컨트롤러 타입이 @Controller이면 템플릿 출력,
@@ -201,7 +209,7 @@ public class HandlerAdapterImpl implements HandlerAdapter {
     private void invokeMethod(Object paramObj, Method method, String value, Class clz, String fieldNm) {
         try {
             if (clz == String.class) { // 문자열 처리
-                method.invoke(paramObj, value);
+                method.invoke(paramObj, value); // invoke는 동적처리
 
                 /* 기본 자료형 및 Wrapper 클래스 자료형 처리  S */
             } else if (clz == boolean.class) {
@@ -236,7 +244,10 @@ public class HandlerAdapterImpl implements HandlerAdapter {
                 // LocalDate, LocalTime, LocalDateTime 자료형 처리 S
             } else if (clz == LocalDateTime.class || clz == LocalDate.class || clz == LocalTime.class) {
                 Field field = paramObj.getClass().getDeclaredField(fieldNm);
+                //paramObj 객체의 필드 중 fieldNm 이름을 가진 필드에 대한 Field 객체를 가져옵니
                 for (Annotation a : field.getDeclaredAnnotations()) {
+                    //필드에서 선언된 모든 애너테이션들을 순회하며 DateTimeFormat 애너테이션을 찾습니다.
+                    //DateTimeFormat 애너테이션에서 포맷 문자열을 가져와 DateTimeFormatter 객체를 생성합니다.
                     if (a instanceof DateTimeFormat dateTimeFormat) {
                         String pattern = dateTimeFormat.value();
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
